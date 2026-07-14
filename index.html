@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#176b5b">
+  <title>乌镇＋杭州｜家庭旅行行动清单</title>
+  <style>
+    :root {
+      --green: #176b5b;
+      --green-dark: #0f4d42;
+      --green-soft: #e7f3ef;
+      --orange: #d86d28;
+      --orange-soft: #fff1e6;
+      --ink: #1f2a27;
+      --muted: #62706c;
+      --line: #d8e1de;
+      --paper: #ffffff;
+      --page: #f3f6f5;
+      --shadow: 0 6px 22px rgba(22, 59, 51, .08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { width: 100%; max-width: 100vw; scroll-behavior: smooth; background: var(--page); }
+    body {
+      width: 100%;
+      max-width: 100vw;
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 17px;
+      line-height: 1.58;
+      overflow-x: hidden;
+    }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .app { width: 100%; max-width: 720px; margin: 0 auto; padding-bottom: 94px; overflow-x: hidden; }
+    .top-shell {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--page);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px 8px;
+      color: var(--green-dark);
+      font-size: 15px;
+      font-weight: 800;
+      overflow: hidden;
+    }
+    .brand > span, .brand small { min-width: 0; white-space: nowrap; }
+    .brand small { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .date-tabs {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: none;
+      padding: 5px 16px 12px;
+      max-width: 100vw;
+    }
+    .date-tabs::-webkit-scrollbar { display: none; }
+    .date-tab {
+      flex: 0 0 auto;
+      min-width: 76px;
+      min-height: 48px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .date-tab span { display: block; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .date-tab.active { color: #fff; background: var(--green); border-color: var(--green); box-shadow: var(--shadow); }
+    .date-tab.active span { color: #d9f1ea; }
+    main { width: 100%; max-width: 100%; padding: 14px 14px 0; }
+    section { scroll-margin-top: 132px; }
+    .card {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 14px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .overview {
+      color: #fff;
+      background: linear-gradient(145deg, var(--green-dark), var(--green));
+      border: 0;
+    }
+    .eyebrow { margin: 0 0 4px; font-size: 15px; font-weight: 800; opacity: .88; }
+    h1 { margin: 0; font-size: clamp(25px, 7vw, 34px); line-height: 1.24; }
+    .theme { margin: 6px 0 16px; color: #d7f2ea; font-size: 19px; font-weight: 700; }
+    .overview-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 10px; }
+    .overview-item { min-width: 0; padding: 11px; border-radius: 13px; background: rgba(255,255,255,.11); }
+    .overview-item.wide { grid-column: 1 / -1; }
+    .label { display: block; margin-bottom: 2px; color: inherit; opacity: .77; font-size: 14px; font-weight: 700; }
+    .value { display: block; min-width: 0; font-weight: 800; overflow-wrap: anywhere; word-break: break-word; }
+    .mode-note { margin: 12px 0 0; color: #d7f2ea; font-size: 14px; }
+    .now-card { border: 2px solid var(--orange); background: #fffdfa; }
+    .section-kicker { margin: 0 0 10px; color: var(--green); font-size: 15px; font-weight: 900; letter-spacing: .03em; }
+    .now-grid { display: grid; gap: 10px; }
+    .action-row { padding: 13px 14px; border-radius: 14px; background: #f6f8f7; }
+    .action-row.current { color: #fff; background: var(--orange); }
+    .action-row.next { background: var(--orange-soft); border: 1px solid #f1c7a7; }
+    .action-label { display: block; margin-bottom: 2px; font-size: 14px; font-weight: 900; opacity: .8; }
+    .action-time { font-size: 22px; font-weight: 900; line-height: 1.2; }
+    .action-title { margin-left: 6px; font-size: 18px; font-weight: 800; }
+    .action-place { display: block; margin-top: 3px; font-size: 15px; opacity: .82; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin: 24px 2px 10px; }
+    .section-head h2 { margin: 0; color: var(--green-dark); font-size: 23px; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 14px; }
+    .timeline { position: relative; display: grid; gap: 12px; }
+    .timeline::before { content: ""; position: absolute; left: 24px; top: 20px; bottom: 20px; width: 2px; background: var(--line); }
+    .timeline-item {
+      position: relative;
+      margin-left: 12px;
+      padding: 16px 15px 15px 50px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .timeline-dot { position: absolute; left: 3px; top: 21px; width: 20px; height: 20px; border: 5px solid var(--paper); border-radius: 50%; background: #93a29e; box-shadow: 0 0 0 2px var(--line); }
+    .timeline-item.current { border: 2px solid var(--orange); background: #fffaf6; }
+    .timeline-item.current .timeline-dot { background: var(--orange); box-shadow: 0 0 0 3px #ffd7ba; }
+    .timeline-item.next { border-color: var(--green); background: var(--green-soft); }
+    .timeline-item.next .timeline-dot { background: var(--green); box-shadow: 0 0 0 3px #bfe3d8; }
+    .timeline-item.done { opacity: .56; box-shadow: none; }
+    .timeline-item.uncertain { border-style: dashed; }
+    .timeline-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .timeline-time { color: var(--green-dark); font-size: 23px; font-weight: 900; }
+    .status { flex: 0 0 auto; padding: 4px 9px; border-radius: 999px; background: #edf1f0; color: var(--muted); font-size: 13px; font-weight: 900; }
+    .status.current { color: #fff; background: var(--orange); }
+    .status.next { color: #fff; background: var(--green); }
+    .timeline-item h3 { margin: 6px 0 7px; font-size: 20px; line-height: 1.35; }
+    .facts { display: grid; gap: 4px; margin: 0; color: var(--muted); font-size: 15px; }
+    .facts strong { color: var(--ink); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+    .btn {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border: 1px solid var(--green);
+      border-radius: 12px;
+      background: var(--paper);
+      color: var(--green-dark);
+      font-weight: 850;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn.primary { color: #fff; background: var(--green); }
+    .btn.soft { border-color: var(--line); color: var(--ink); background: #f5f7f6; }
+    .btn:focus-visible, summary:focus-visible, .date-tab:focus-visible { outline: 3px solid #f2ae79; outline-offset: 2px; }
+    details.guide, details.ticket-box, details.confirm-box {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    details > summary { min-height: 52px; padding: 15px 17px; cursor: pointer; font-weight: 900; list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::after { content: "＋"; float: right; color: var(--green); font-size: 22px; line-height: 1; }
+    details[open] > summary::after { content: "－"; }
+    .guide-summary small { display: block; margin-top: 2px; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .guide-body, .details-body { padding: 0 17px 17px; }
+    .guide-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 14px; }
+    .mini { padding: 10px; border-radius: 12px; background: #f4f7f6; font-size: 15px; }
+    .mini strong { display: block; color: var(--green-dark); }
+    .guide-body h4 { margin: 14px 0 4px; color: var(--green-dark); font-size: 17px; }
+    .guide-body ul, .details-body ul { margin: 5px 0 0; padding-left: 22px; }
+    .student-task { margin-top: 13px; padding: 11px 13px; border-radius: 12px; background: var(--orange-soft); }
+    .ticket-list { display: grid; gap: 10px; }
+    .ticket-item { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfc; }
+    .ticket-item h3 { margin: 0 0 7px; font-size: 18px; }
+    .ticket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px; color: var(--muted); font-size: 15px; }
+    .ticket-grid .wide { grid-column: 1 / -1; }
+    .ticket-grid strong { color: var(--ink); }
+    .info-grid { display: grid; gap: 10px; }
+    .info-item { padding: 13px 14px; border-radius: 14px; background: #f4f7f6; }
+    .info-item strong { display: block; color: var(--green-dark); }
+    .contact { border: 1px dashed #9cb4ad; background: var(--green-soft); }
+    .confirm-box { margin-top: 28px; }
+    .source-note { color: var(--muted); font-size: 14px; }
+    .bottom-nav {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      max-width: 720px;
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 -8px 24px rgba(30, 56, 49, .09);
+    }
+    .bottom-nav a { min-height: 50px; padding: 5px 3px; color: var(--muted); font-size: 14px; font-weight: 800; text-align: center; text-decoration: none; }
+    .bottom-nav span { display: block; font-size: 20px; line-height: 1.15; }
+    dialog { width: min(calc(100% - 32px), 480px); padding: 0; border: 0; border-radius: 18px; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+    dialog::backdrop { background: rgba(11, 30, 26, .55); }
+    .dialog-body { padding: 22px; }
+    .dialog-body h2 { margin: 0 0 8px; color: var(--green-dark); }
+    .dialog-body p { margin: 0 0 17px; }
+    @media (min-width: 600px) {
+      main { padding-inline: 20px; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+      .info-item.wide { grid-column: 1 / -1; }
+    }
+    @media (max-width: 420px) {
+      .brand small { display: none; }
+      main { padding-top: 10px; }
+      .card { margin-bottom: 12px; padding: 14px; }
+      .overview { padding: 15px; }
+      .overview h1 { font-size: 29px; }
+      .theme { margin: 3px 0 10px; font-size: 18px; }
+      .overview-grid { gap: 8px; }
+      .overview-item { padding: 8px 9px; }
+      .label { font-size: 13px; }
+      .value { font-size: 16px; line-height: 1.42; }
+      .mode-note { display: none; }
+      .now-card { padding: 13px 14px; }
+      .section-kicker { margin-bottom: 7px; }
+      .now-grid { gap: 8px; }
+      .action-row { padding: 10px 12px; }
+      .action-time { font-size: 20px; }
+      .action-title { font-size: 17px; }
+      .action-place { margin-top: 1px; font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top-shell">
+      <div class="brand"><span>家庭旅行行动清单</span><small>2026.8.2—8.8｜6人</small></div>
+      <nav id="dateTabs" class="date-tabs" aria-label="切换旅行日期"></nav>
+    </header>
+
+    <main>
+      <section id="today" aria-label="今日概览"></section>
+      <section id="timelineSection" aria-labelledby="timelineTitle">
+        <div class="section-head"><div><h2 id="timelineTitle">当日时间轴</h2><p>按顺序执行，时间待确认项不参与自动计时</p></div></div>
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <section id="guides" aria-labelledby="guidesTitle">
+        <div class="section-head"><div><h2 id="guidesTitle">景点简明攻略</h2><p>点击卡片展开</p></div></div>
+        <div id="guideList"></div>
+      </section>
+
+      <section id="tickets" aria-labelledby="ticketsTitle">
+        <div class="section-head"><div><h2 id="ticketsTitle">门票与预约</h2><p>未见凭证均不视为完成</p></div></div>
+        <details class="ticket-box" open>
+          <summary>查看当日预约清单</summary>
+          <div id="ticketList" class="details-body ticket-list"></div>
+        </details>
+      </section>
+
+      <section id="emergency" aria-labelledby="emergencyTitle">
+        <div class="section-head"><div><h2 id="emergencyTitle">今日重要信息</h2><p>走散、天气或体力不足时先看这里</p></div></div>
+        <div id="infoGrid" class="card info-grid"></div>
+      </section>
+
+      <details class="confirm-box" id="confirmations">
+        <summary>全程待确认事项</summary>
+        <div class="details-body">
+          <ul id="confirmList"></ul>
+          <p class="source-note">行程以原 Word 为主整理；票价、开放时间、预约规则及酒店权益请在出发前通过官方渠道和实际订单再次确认。</p>
+        </div>
+      </details>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="页面快捷导航">
+    <a href="#today"><span>☀️</span>今天</a>
+    <a href="#timelineSection"><span>🕒</span>时间轴</a>
+    <a href="#tickets"><span>🎫</span>门票</a>
+    <a href="#emergency"><span>🧭</span>应急</a>
+  </nav>
+
+  <dialog id="ticketDialog">
+    <div class="dialog-body">
+      <h2>查看凭证</h2>
+      <p id="ticketDialogText">凭证尚未添加，请由行程负责人补充。</p>
+      <button class="btn primary" type="button" id="closeDialog">知道了</button>
+    </div>
+  </dialog>
+
+  <script>
+    "use strict";
+
+    // ===== 修改联系人信息的位置 =====
+    const CONTACT = { owner: "待填写", phone: "待填写" };
+
+    const OFFICIAL = {
+      wuzhen: "https://www.wuzhen.com.cn/web/traver/info",
+      muxin: "http://www.muxinam.com/",
+      lingyin: "https://www.lingyinsi.org/detail_57_19455.html",
+      xixi: "https://www.xixiwetland.com.cn/",
+      songcheng: "https://m.songcn.com/index.html",
+      deshou: "https://ori.hangzhou.com.cn/ornews/content/2022-11/17/content_8402606.htm",
+      westlakeBoat: "https://www.ehangzhou.gov.cn/2021-11/11/c_278642.htm"
+    };
+
+    const commonEmergency = {
+      hotel: "乌镇锦堂行馆（西栅景区内）",
+      hotelAddress: "具体地址、入住入口及接驳方式按订单确认",
+      hotelNav: "乌镇锦堂行馆",
+      lost: "乌镇锦堂行馆大堂；在杭州时改为当前景点主入口",
+      heat: "删去正午户外支线，优先室内、游船、电瓶车或酒店休息。",
+      rain: "保留室内展馆和安全运营的有顶船，取消湿滑步道。",
+      lowEnergy: "跳过支线景点，6人整车直达下一集合点或返回酒店。"
+    };
+
+    const link = (label, url, kind = "soft") => ({ label, url, kind });
+    const navLink = place => link("高德导航", `https://uri.amap.com/search?keyword=${encodeURIComponent(place)}&view=map&callnative=1`, "primary");
+    const redLink = keyword => link("小红书搜索", `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(keyword)}`);
+    const dianpingLink = keyword => link("大众点评搜索", `https://www.dianping.com/search/keyword/3/0_${encodeURIComponent(keyword)}`);
+    const officialLink = url => link("官方渠道", url);
+
+    // ===== 修改日期、每日概览、时间轴和门票数据的位置 =====
+    const tripDays = [
+      {
+        date: "2026-08-02", day: 1, city: "乌镇", theme: "抵达静养・全程不出酒店",
+        meetingTime: "抵达时间待确认", meetingPlace: "出发地／网约车上车点",
+        reminder: "今天只办理入住和休整，不安排外出游玩。",
+        timeline: [
+          { start: null, timeLabel: "时间待确认", title: "6人集合并乘车前往乌镇", place: "出发地上车点 → 乌镇锦堂行馆", duration: "按实际出发地确认", transport: "7座网约车，6人一车", reminder: "出发前核对全员、证件、行李和酒店订单。", nav: "乌镇锦堂行馆" },
+          { start: null, timeLabel: "抵达后", title: "办理入住并确认住客权益", place: "乌镇锦堂行馆前台", duration: "约30—60分钟", transport: "酒店接驳待确认", reminder: "核对房型、早餐、西栅门票及重复进出规则。", nav: "乌镇锦堂行馆", ticket: true },
+          { start: null, timeLabel: "用餐时间待确认", title: "酒店内用餐", place: "乌镇锦堂行馆内", duration: "按订单与营业时间", transport: "步行", reminder: "原文写酒店三餐；首日早餐是否适用待确认。", ticket: true },
+          { start: null, timeLabel: "其余时间", title: "庭院散步与休息", place: "酒店古宅庭院", duration: "自由安排", transport: "步行", reminder: "不外出、不逛景，优先恢复体力。" }
+        ],
+        attractions: [
+          { name: "乌镇锦堂行馆", summary: "首日只在酒店办理入住、用餐和休整。", arrive: "抵达时间待确认", stay: "全天", route: "前台 → 客房 → 庭院", leave: "不外出", must: ["核对两间客房与6人入住信息", "确认早餐、景区权益和接驳方式"], tips: ["房型、早餐及门票权益以实际订单为准", "贵重物品和证件集中保管", "高温时减少庭院停留"], task: "学生任务：拍一张白墙黛瓦或庭院对称构图照片。", links: [navLink("乌镇锦堂行馆"), redLink("乌镇锦堂行馆 入住攻略")] }
+        ],
+        tickets: [
+          { name: "酒店订单与西栅住客权益", channel: "酒店订单／前台", release: "入住前核对", status: "请再次确认", ticketImage: "" }
+        ],
+        transport: "7座网约车；无包车、无导游",
+        tomorrowPreparation: "身份证件、防晒用品、饮用水；核对西栅门票与木心美术馆开放安排。"
+      },
+      {
+        date: "2026-08-03", day: 2, city: "乌镇", theme: "西栅全天深度游玩",
+        meetingTime: "09:00", meetingPlace: "乌镇锦堂行馆大堂",
+        reminder: "住客早晚错峰；游船由工作人员驾驶，不自行开船。",
+        timeline: [
+          { start: "09:00", end: "12:00", title: "西栅老街、水上集市与草木本色", place: "乌镇西栅景区", duration: "约3小时", transport: "步行／景区游览车", reminder: "先走阴凉街巷，正午前结束主要户外段。", nav: "乌镇西栅景区游客服务中心", ticket: true },
+          { start: "12:00", end: "13:30", title: "乌镇午餐", place: "餐厅名称待确认", duration: "约1.5小时", transport: "步行", reminder: "原文餐厅名称不完整，出发前订6人大桌。", guide: "乌镇午餐 待确认", ticket: true },
+          { start: "13:30", end: "15:00", title: "专人驾驶游船游古运河", place: "西栅景区码头（具体码头待确认）", duration: "约1—1.5小时", transport: "景区游船", reminder: "确认6人同船、码头、排队及返程落点。", nav: "乌镇西栅安渡坊码头", ticket: true },
+          { start: "15:00", end: "17:00", title: "参观木心美术馆", place: "木心美术馆", duration: "约2小时", transport: "步行／游览车", reminder: "开放时间与预约要求请出发前再查官方。", nav: "木心美术馆", ticket: true },
+          { start: "17:00", end: "20:00", title: "夕阳、夜景与本地晚餐", …4494 tokens truncated…:30", end: "12:45", title: "知味观味庄午餐", place: "知味观味庄（具体门店待确认）", duration: "约1小时15分", transport: "7座网约车", reminder: "门店和6人订位待确认，预留前往德寿宫时间。", nav: "知味观味庄", guide: "知味观味庄", ticket: true },
+          { start: "13:00", end: "15:30", title: "德寿宫与胡雪岩故居人文段", place: "南宋德寿宫遗址博物馆／胡雪岩故居", duration: "约2.5小时", transport: "网约车＋步行", reminder: "德寿宫预约是硬条件；两处顺序和转场时间待确认。", nav: "南宋德寿宫遗址博物馆", ticket: true },
+          { start: "16:00", end: "17:30", title: "雷峰塔", place: "雷峰塔景区", duration: "约1.5小时", transport: "7座网约车", reminder: "原文门票表含此项；正文未写转场，时间需复核。", nav: "雷峰塔景区", ticket: true },
+          { start: "17:30", end: "19:00", title: "湖滨／河坊街购买伴手礼", place: "湖滨或河坊街（二选一）", duration: "约1—1.5小时", transport: "网约车＋步行", reminder: "根据返程时间二选一，不两处都赶。", nav: "河坊街" },
+          { start: null, timeLabel: "时间待确认", title: "取行李并返程", place: "行李存放点 → 返程车站／机场", duration: "按实际车票", transport: "7座网约车／公共交通", reminder: "至少预留安检、堵车和取行李缓冲。", ticket: true }
+        ],
+        attractions: [
+          { name: "西湖游船与三潭印月", summary: "乘官方专人驾驶画舫，按票种确认登岛与返岸。", arrive: "09:30", stay: "至11:30", route: "具体码头 → 画舫 → 三潭印月 → 指定码头", leave: "11:30", must: ["西湖水上视角", "三潭印月岛", "官方画舫航线"], tips: ["具体登船码头待确认", "核对票种是否含登岛", "下船码头可能不同，先确认午餐转场", "晕船者提前坐中部并少看手机"], task: "学生任务：拍一张包含近处船体与远处湖岸的层次照片。", links: [navLink("湖滨五公园码头"), officialLink(OFFICIAL.westlakeBoat), redLink("西湖游船三潭印月路线")] },
+          { name: "南宋德寿宫遗址博物馆", summary: "免费预约人文场馆，预约成功后再锁定13:00段。", arrive: "13:00", stay: "约1—1.5小时", route: "主入口 → 遗址展区 → 宫苑复原展区", leave: "按15:30前完成两馆安排", must: ["遗址本体展示", "重华宫相关展陈", "南宋临安城内容"], tips: ["未见预约凭证，不得视为已约", "官方公众号与放票时间出发前复核", "馆内留意拍摄和讲解规定", "体力不足可跳过部分数字展项"], task: "学生任务：找一个能说明南宋建筑做法的细节。", links: [navLink("南宋德寿宫遗址博物馆"), officialLink(OFFICIAL.deshou), redLink("德寿宫 预约 参观路线")] },
+          { name: "胡雪岩故居", summary: "与德寿宫组成下午人文段，具体先后顺序待确认。", arrive: "13:00—15:30时段内", stay: "建议60分钟", route: "入口 → 主体宅院 → 园林", leave: "前往雷峰塔前", must: ["宅院空间层次", "江南园林细节", "木雕与门窗构件"], tips: ["开放时间和门票出发前确认", "与德寿宫转场时间需实测", "雨天地面可能湿滑", "赶时间时只走主体宅院"], task: "学生任务：找到一处对称布局，并判断它为何这样安排。", links: [navLink("胡雪岩故居"), redLink("胡雪岩故居 游览路线")] },
+          { name: "雷峰塔", summary: "原文门票表列有16:00—17:30，作为返程前最后景点。", arrive: "16:00", stay: "至17:30", route: "入口 → 塔内展陈 → 登塔观景", leave: "17:30", must: ["塔内遗址展示", "西湖高处视野", "塔体与湖岸关系"], tips: ["正文未写此段转场，需人工确认", "票价和开放时间可能变化", "电梯排队时预留时间", "体力不足只看塔基与低层"], task: "学生任务：从高处找出一条湖岸线并描述其形状。", links: [navLink("雷峰塔景区"), redLink("雷峰塔 游览攻略")] }
+        ],
+        tickets: [
+          { name: "西湖电动画舫", channel: "“西湖游船”官方渠道", release: "原计划：8月7日全天购买", status: "待购票", official: OFFICIAL.westlakeBoat, ticketImage: "" },
+          { name: "南宋德寿宫遗址博物馆", channel: "官方公众号", release: "原计划写8月3日09:00，与“提前3天”矛盾", status: "免费预约／待预约", official: OFFICIAL.deshou, ticketImage: "" },
+          { name: "雷峰塔", channel: "景区官方／正规售票平台", release: "原计划：8月7日全天购买", status: "待购票", ticketImage: "" },
+          { name: "胡雪岩故居", channel: "官方渠道待确认", release: "原文未写", status: "请再次确认", ticketImage: "" },
+          { name: "返程交通", channel: "实际车票／机票订单", release: "出发前确认", status: "待添加凭证", ticketImage: "" }
+        ],
+        transport: "乌镇→杭州7座网约车；官方画舫＋网约车＋返程交通",
+        tomorrowPreparation: "行程结束；检查证件、行李、伴手礼和所有电子设备。"
+      }
+    ];
+
+    const confirmations = [
+      "Day1 抵达时间、入住入口、早餐适用范围和西栅住客权益需按实际订单确认。",
+      "Day5 原文第1项为空；油纸伞非遗项目、午餐地点和具体入口不完整。",
+      "乌镇、龙井、西溪、宋城等部分餐厅名称或门店不完整，6人订位均未见凭证。",
+      "全程住在乌镇却连续往返杭州：跨城车程、早出发和晚返时间需重新核算。",
+      "德寿宫原文“8月3日09:00抢票”与“提前3天放票”互相矛盾。",
+      "雷峰塔出现在门票表，但 Day7 正文没有写清转场；16:00时段需人工确认。",
+      "灵隐现行预约方式已变化；所有预约规则、放票时间、票价和开放时间都可能调整。",
+      "全部酒店早餐、门票、游船、餐厅和返程安排，只有看到实际订单或凭证才算完成。"
+    ];
+
+    let selectedIndex = 0;
+    const $ = selector => document.querySelector(selector);
+    const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
+    const displayDate = iso => { const d = new Date(`${iso}T00:00:00`); return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`; };
+    const shortDate = iso => { const [,m,d] = iso.split("-"); return `${Number(m)}月${Number(d)}日`; };
+    const weekday = iso => "周" + "日一二三四五六"[new Date(`${iso}T00:00:00`).getDay()];
+    const toMinutes = time => { if (!/^\d{2}:\d{2}$/.test(time || "")) return null; const [h,m] = time.split(":").map(Number); return h * 60 + m; };
+    const todayIso = () => { const d = new Date(); const p = n => String(n).padStart(2, "0"); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`; };
+
+    function pickDefaultDay() {
+      const index = tripDays.findIndex(day => day.date === todayIso());
+      return index >= 0 ? index : 0;
+    }
+
+    selectedIndex = pickDefaultDay();
+
+    function timelineState(day) {
+      const isToday = day.date === todayIso();
+      const states = day.timeline.map(() => "pending");
+      if (!isToday) {
+        if (states.length) states[0] = "next";
+        return { isToday, states, current: null, next: day.timeline[0] || null, after: day.timeline[1] || null, mode: "preview" };
+      }
+
+      const now = new Date();
+      const minutes = now.getHours() * 60 + now.getMinutes();
+      const known = day.timeline.map((item, index) => ({ item, index, start: toMinutes(item.start), end: toMinutes(item.end) })).filter(x => x.start !== null);
+      if (!known.length) {
+        if (states.length) states[0] = "next";
+        return { isToday, states, current: null, next: day.timeline[0] || null, after: day.timeline[1] || null, mode: "uncertain" };
+      }
+
+      known.forEach((entry, i) => {
+        const fallbackEnd = known[i + 1]?.start ?? entry.start + 60;
+        entry.effectiveEnd = entry.end ?? fallbackEnd;
+      });
+      const active = known.find(entry => minutes >= entry.start && minutes < entry.effectiveEnd);
+      const firstFuture = known.find(entry => entry.start > minutes);
+
+      let currentIndex = active?.index ?? null;
+      let nextIndex = null;
+      if (active) {
+        nextIndex = active.index + 1;
+      } else if (firstFuture) {
+        const completedKnown = known.filter(entry => entry.effectiveEnd <= minutes);
+        nextIndex = completedKnown.length ? completedKnown[completedKnown.length - 1].index + 1 : 0;
+      } else {
+        const lastKnownIndex = known[known.length - 1].index;
+        nextIndex = lastKnownIndex + 1 < day.timeline.length ? lastKnownIndex + 1 : null;
+      }
+      if (currentIndex !== null) {
+        for (let i = 0; i < currentIndex; i++) states[i] = "done";
+        states[currentIndex] = "current";
+      } else if (firstFuture) {
+        for (let i = 0; i < firstFuture.index; i++) states[i] = "done";
+      } else if (nextIndex === null) {
+        states.fill("done");
+      } else {
+        for (let i = 0; i < nextIndex; i++) states[i] = "done";
+      }
+
+      if (nextIndex !== null && nextIndex < states.length) states[nextIndex] = "next";
+      const nextItem = nextIndex !== null ? day.timeline[nextIndex] : null;
+      const afterItem = nextIndex !== null ? day.timeline[nextIndex + 1] || null : null;
+      const mode = active ? "active" : firstFuture ? "before" : nextItem ? "uncertain" : "ended";
+      return { isToday, states, current: currentIndex !== null ? day.timeline[currentIndex] : null, next: nextItem, after: afterItem, mode };
+    }
+
+    function itemTime(item) { return item?.start || item?.timeLabel || "时间待确认"; }
+
+    function renderTabs() {
+      $("#dateTabs").innerHTML = tripDays.map((day, index) => `
+        <button class="date-tab ${index === selectedIndex ? "active" : ""}" type="button" data-index="${index}" aria-pressed="${index === selectedIndex}">
+          ${shortDate(day.date)}<span>${weekday(day.date)} · Day ${day.day}</span>
+        </button>`).join("");
+      $("#dateTabs").querySelectorAll("button").forEach(button => button.addEventListener("click", () => {
+        selectedIndex = Number(button.dataset.index);
+        renderAll();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }));
+      $("#dateTabs").querySelector(".active")?.scrollIntoView({ block: "nearest", inline: "center" });
+    }
+
+    function actionMarkup(label, item, className) {
+      if (!item) return `<div class="action-row ${className}"><span class="action-label">${label}</span><strong class="action-title">暂无后续事项</strong></div>`;
+      return `<div class="action-row ${className}"><span class="action-label">${label}</span><span class="action-time">${escapeHtml(itemTime(item))}</span><strong class="action-title">${escapeHtml(item.title)}</strong><span class="action-place">${escapeHtml(item.place)}</span></div>`;
+    }
+
+    function renderToday(day, state) {
+      let current;
+      if (state.mode === "preview") current = { timeLabel: "行程预览", title: "尚未到当天，先看第一项安排", place: day.meetingPlace };
+      else if (state.mode === "uncertain") current = { timeLabel: "时间待确认", title: "今日事项没有可自动判断的精确时间", place: day.meetingPlace };
+      else if (state.mode === "before") current = { timeLabel: "尚未开始", title: "按集合安排准备出发", place: day.meetingPlace };
+      else if (state.mode === "ended") current = { timeLabel: "已结束", title: "今日有时间的行程已结束", place: "请核对是否仍有时间待确认事项" };
+      else current = state.current;
+
+      $("#today").innerHTML = `
+        <article class="card overview">
+          <p class="eyebrow">${displayDate(day.date)}｜Day ${day.day}</p>
+          <h1>${escapeHtml(day.city)}</h1>
+          <p class="theme">${escapeHtml(day.theme)}</p>
+          <div class="overview-grid">
+            <div class="overview-item"><span class="label">集合时间</span><span class="value">${escapeHtml(day.meetingTime)}</span></div>
+            <div class="overview-item"><span class="label">集合地点</span><span class="value">${escapeHtml(day.meetingPlace)}</span></div>
+            <div class="overview-item wide"><span class="label">今日最重要提醒</span><span class="value">${escapeHtml(day.reminder)}</span></div>
+          </div>
+          <p class="mode-note">${state.isToday ? "已按手机本地时间自动更新状态。" : "当前为行程预览；到旅行当天会按手机时间自动更新。"}</p>
+        </article>
+        <article class="card now-card">
+          <p class="section-kicker">现在与下一步</p>
+          <div class="now-grid">
+            ${actionMarkup("现在", current, "current")}
+            ${actionMarkup("下一步", state.next, "next")}
+            ${actionMarkup("再下一步", state.after, "")}
+          </div>
+        </article>`;
+    }
+
+    function statusText(code, item) {
+      if (!item.start) return code === "next" ? "下一步・待确认" : "待确认";
+      return ({ done: "已完成", current: "进行中", next: "下一步", pending: "待进行" })[code] || "待进行";
+    }
+
+    function buttonsMarkup(item) {
+      const buttons = [];
+      if (item.nav) buttons.push(`<a class="btn primary" href="${navLink(item.nav).url}" target="_blank" rel="noopener">高德导航</a>`);
+      if (item.guide) buttons.push(`<a class="btn" href="${redLink(item.guide).url}" target="_blank" rel="noopener">查看攻略</a>`);
+      if (item.ticket) buttons.push(`<button class="btn soft ticket-trigger" type="button" data-ticket-image="${escapeHtml(item.ticketImage || "")}">查看凭证</button>`);
+      return buttons.length ? `<div class="btn-row">${buttons.join("")}</div>` : "";
+    }
+
+    function renderTimeline(day, state) {
+      $("#timeline").innerHTML = day.timeline.map((item, index) => {
+        const code = state.states[index] || "pending";
+        const uncertain = !item.start ? " uncertain" : "";
+        return `<article class="timeline-item ${code}${uncertain}">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-top"><time class="timeline-time">${escapeHtml(itemTime(item))}</time><span class="status ${code}">${statusText(code, item)}</span></div>
+          <h3>${escapeHtml(item.title)}</h3>
+          <div class="facts">
+            <span><strong>地点：</strong>${escapeHtml(item.place)}</span>
+            <span><strong>预计持续：</strong>${escapeHtml(item.duration)}</span>
+            <span><strong>交通：</strong>${escapeHtml(item.transport)}</span>
+            <span><strong>提醒：</strong>${escapeHtml(item.reminder)}</span>
+          </div>
+          ${buttonsMarkup(item)}
+        </article>`;
+      }).join("");
+    }
+
+    function renderGuides(day) {
+      $("#guideList").innerHTML = day.attractions.map(spot => `
+        <details class="guide">
+          <summary class="guide-summary">${escapeHtml(spot.name)}<small>${escapeHtml(spot.summary)}</small></summary>
+          <div class="guide-body">
+            <div class="guide-meta">
+              <div class="mini"><strong>建议到达</strong>${escapeHtml(spot.arrive)}</div>
+              <div class="mini"><strong>建议停留</strong>${escapeHtml(spot.stay)}</div>
+              <div class="mini"><strong>推荐顺序</strong>${escapeHtml(spot.route)}</div>
+              <div class="mini"><strong>建议离开</strong>${escapeHtml(spot.leave)}</div>
+            </div>
+            <h4>必看内容</h4><ul>${spot.must.slice(0,3).map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
+            <h4>实用提醒</h4><ul>${spot.tips.slice(0,4).map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
+            <div class="student-task">📝 ${escapeHtml(spot.task)}</div>
+            <div class="btn-row">${spot.links.slice(0,4).map(item => `<a class="btn ${item.kind || ""}" href="${item.url}" target="_blank" rel="noopener">${escapeHtml(item.label)}</a>`).join("")}</div>
+          </div>
+        </details>`).join("");
+    }
+
+    function renderTickets(day) {
+      $("#ticketList").innerHTML = day.tickets.map(ticket => `
+        <article class="ticket-item">
+          <h3>${escapeHtml(ticket.name)}</h3>
+          <div class="ticket-grid">
+            <span><strong>游玩日期：</strong>${shortDate(day.date)}</span>
+            <span><strong>当前状态：</strong>${escapeHtml(ticket.status)}</span>
+            <span class="wide"><strong>预约渠道：</strong>${escapeHtml(ticket.channel)}</span>
+            <span class="wide"><strong>原计划／放票：</strong>${escapeHtml(ticket.release)}</span>
+          </div>
+          <div class="btn-row">
+            ${ticket.official ? `<a class="btn" href="${ticket.official}" target="_blank" rel="noopener">官方渠道</a>` : ""}
+            <button class="btn soft ticket-trigger" type="button" data-ticket-image="${escapeHtml(ticket.ticketImage || "")}">查看凭证</button>
+          </div>
+        </article>`).join("");
+    }
+
+    function renderInfo(day) {
+      const items = [
+        ["酒店", `${commonEmergency.hotel}｜${commonEmergency.hotelAddress}`],
+        ["酒店导航", `<a href="${navLink(commonEmergency.hotelNav).url}" target="_blank" rel="noopener">打开高德地图</a>`],
+        ["当日主要交通", day.transport],
+        ["走散后集合", commonEmergency.lost],
+        ["高温简化", commonEmergency.heat],
+        ["下雨简化", commonEmergency.rain],
+        ["体力不足", commonEmergency.lowEnergy],
+        ["明日准备", day.tomorrowPreparation]
+      ];
+      $("#infoGrid").innerHTML = items.map(([label, value]) => `<div class="info-item"><strong>${label}</strong>${label === "酒店导航" ? value : escapeHtml(value)}</div>`).join("") + `
+        <div class="info-item contact wide"><strong>联系人</strong>行程负责人：${escapeHtml(CONTACT.owner)}<br>联系电话：${escapeHtml(CONTACT.phone)}</div>`;
+    }
+
+    function bindTicketButtons() {
+      document.querySelectorAll(".ticket-trigger").forEach(button => button.addEventListener("click", () => {
+        const image = button.dataset.ticketImage;
+        const text = $("#ticketDialogText");
+        if (image) {
+          text.innerHTML = `<a class="btn primary" href="${escapeHtml(image)}" target="_blank" rel="noopener">打开凭证图片</a><br><small>请勿在共享页面放置身份证号、完整手机号或动态二维码。</small>`;
+        } else {
+          text.textContent = "凭证尚未添加，请由行程负责人补充。";
+        }
+        if (typeof $("#ticketDialog").showModal === "function") $("#ticketDialog").showModal();
+        else window.alert(image ? "请打开已配置的凭证图片。" : "凭证尚未添加，请由行程负责人补充。");
+      }));
+    }
+
+    function renderAll() {
+      const day = tripDays[selectedIndex];
+      const state = timelineState(day);
+      renderTabs();
+      renderToday(day, state);
+      renderTimeline(day, state);
+      renderGuides(day);
+      renderTickets(day);
+      renderInfo(day);
+      bindTicketButtons();
+      document.title = `${shortDate(day.date)} Day ${day.day}｜乌镇＋杭州家庭旅行`;
+    }
+
+    $("#confirmList").innerHTML = confirmations.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    $("#closeDialog").addEventListener("click", () => $("#ticketDialog").close());
+    $("#ticketDialog").addEventListener("click", event => { if (event.target === $("#ticketDialog")) $("#ticketDialog").close(); });
+    renderAll();
+    window.setInterval(() => { if (tripDays[selectedIndex].date === todayIso()) renderAll(); }, 60000);
+  </script>
+</body>
+</html>
+
