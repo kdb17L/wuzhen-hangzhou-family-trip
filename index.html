@@ -267,6 +267,18 @@
 
       <section id="tickets" aria-labelledby="ticketsTitle">
         <div class="section-head"><div><h2 id="ticketsTitle">门票与预约</h2><p>未见凭证均不视为完成</p></div></div>
+        <details class="ticket-box">
+          <summary>⏰ 全程抢票闹钟</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>出发前7天 08:00：</strong>抢灵隐飞来峰上午场，6人实名信息提前准备。</li>
+              <li><strong>出发前3天：</strong>购买乌镇西栅、东栅门票。</li>
+              <li><strong>出发前2天：</strong>预约乌村田园景区。</li>
+              <li><strong>出发前1—2天：</strong>预订西湖游船、雷峰塔及宋城千古情。</li>
+              <li><strong>安全提醒：</strong>身份证信息只录入官方购票渠道，不写入或上传到本网页。</li>
+            </ul>
+          </div>
+        </details>
         <details class="ticket-box" open>
           <summary>查看当日预约清单</summary>
           <div id="ticketList" class="details-body ticket-list"></div>
@@ -342,11 +354,11 @@
       {
         date: "2026-08-02", day: 1, city: "乌镇", theme: "西栅入住・昭明书院・水乡夜景",
         hotel: "乌镇锦堂行馆", hotelAddress: "西栅景区内；入住入口、房型与行李托运方式以订单和游客中心为准", hotelNav: "乌镇锦堂行馆", lost: "乌镇锦堂行馆大堂",
-        meetingTime: "抵达时间待确认", meetingPlace: "乌镇西栅游客服务中心",
+        meetingTime: "抵达时间待确认（预约表建议09:30入园）", meetingPlace: "乌镇西栅游客服务中心",
         reminder: "先统一办理入住、录入多次入园权限并托运行李；正午回酒店午休避暑。",
         timeline: [
           { start: null, timeLabel: "抵达后", title: "游客中心办理入住与行李托运", place: "乌镇西栅游客服务中心 → 锦堂行馆", duration: "约30—60分钟", transport: "7座网约车＋景区接驳", reminder: "核对6人入住信息、人脸多次入园权限和行李送达时间。", nav: "乌镇西栅游客服务中心", ticket: true },
-          { start: null, timeLabel: "上午／抵达后", title: "昭明书院与西栅核心小景", place: "昭明书院、草木本色染坊、叙昌酱园", duration: "约2—3小时", transport: "步行／景区观光车", reminder: "先走阴凉室内段，高温时缩短户外停留。", nav: "昭明书院" },
+          { start: "09:30", title: "昭明书院与西栅核心小景", place: "昭明书院、草木本色染坊、叙昌酱园", duration: "约2—3小时", transport: "步行／景区观光车", reminder: "预约表建议09:30入园；实际仍需配合抵达和入住时间。", nav: "昭明书院" },
           { start: null, timeLabel: "中午", title: "西栅午餐并回酒店午休", place: "西栅街区 → 乌镇锦堂行馆", duration: "约2—3小时", transport: "步行／接驳", reminder: "餐厅未指定，6人用餐地点与订位待确认。", guide: "乌镇西栅 水乡菜" },
           { start: null, timeLabel: "傍晚", title: "临水步道与通济桥散步", place: "西栅外围临水步道、通济桥周边", duration: "约1—1.5小时", transport: "步行", reminder: "避开主街人流；体力不足直接进入夜景段。", nav: "通济桥 乌镇" },
           { start: null, timeLabel: "夜间", title: "西栅灯光夜景", place: "乌镇西栅景区", duration: "约1.5—2小时", transport: "步行／接驳", reminder: "结束后全员返回锦堂行馆，不单独离队。", nav: "乌镇西栅景区" }
@@ -356,7 +368,7 @@
           { name: "乌镇西栅", summary: "首日串联染坊、酱园、通济桥和夜景，节奏以休整为主。", arrive: "入住后", stay: "分上午与傍晚两段", route: "昭明书院 → 染坊 → 酱园 → 午休 → 通济桥 → 夜景", leave: "夜景结束后", must: ["草木本色染坊", "叙昌酱园", "西栅夜景"], tips: ["住客多次入园权益需现场核对", "正午回酒店休息", "景区观光车按现场运营使用"], task: "学生任务：记录一种传统染织或酿造工艺的细节。", links: [navLink("乌镇西栅景区游客服务中心"), officialLink(OFFICIAL.wuzhen), redLink("乌镇西栅夜景路线")] }
         ],
         tickets: [
-          { name: "锦堂行馆订单与西栅住客权益", channel: "酒店订单／西栅游客服务中心", release: "入住前与抵达时复核", status: "请再次确认", official: OFFICIAL.wuzhen, ticketImage: "" }
+          { name: "西栅景区（含昭明书院）＋锦堂住客权益", channel: "乌镇旅游官方小程序／酒店订单／游客中心", release: "出发前3天购票；预约表建议09:30入园、参考开放9:00—22:00", status: "待购票／待核对住客权益", official: OFFICIAL.wuzhen, ticketImage: "" }
         ],
         transport: "7座网约车＋景区接驳／观光车＋步行",
         tomorrowPreparation: "身份证件、防晒、饮用水；确认东栅入园与西栅内河游船方案。"
@@ -364,22 +376,22 @@
       {
         date: "2026-08-03", day: 2, city: "乌镇", theme: "东栅全天・西栅内河游船",
         hotel: "乌镇锦堂行馆", hotelAddress: "西栅景区内；具体接驳与住客权益以订单为准", hotelNav: "乌镇锦堂行馆", lost: "乌镇锦堂行馆大堂；东栅游览时改为东栅游客服务中心",
-        meetingTime: "上午出发时间待确认", meetingPlace: "乌镇锦堂行馆大堂",
-        reminder: "16:00前结束东栅；所有游船均为景区专人驾驶电动船，不乘手摇船。",
+        meetingTime: "08:30建议抵达东栅", meetingPlace: "乌镇锦堂行馆大堂",
+        reminder: "15:00前结束东栅并赶往西栅游船码头；所有游船均为景区专人驾驶电动船。",
         timeline: [
-          { start: null, timeLabel: "上午", title: "乘免费接驳车前往东栅", place: "西栅 → 乌镇东栅景区", duration: "按接驳班次", transport: "景区免费接驳车", reminder: "班次与上车点当天再确认。", nav: "乌镇东栅景区", ticket: true },
+          { start: "08:30", title: "抵达东栅并开始游览", place: "西栅 → 乌镇东栅景区", duration: "接驳时间另计", transport: "景区免费接驳车", reminder: "预约表建议08:30入园；接驳班次与上车点当天再确认。", nav: "乌镇东栅景区", ticket: true },
           { start: null, timeLabel: "上午至下午", title: "东栅老街与民俗表演", place: "茅盾故居、百床馆、财神湾、林家铺子、宏源泰染坊", duration: "约5—6小时", transport: "步行", reminder: "皮影戏、花鼓戏场次以现场公告为准，中途安排本地简餐。", nav: "乌镇东栅景区" },
-          { start: null, timeLabel: "16:00前", title: "结束东栅并返回西栅", place: "东栅 → 西栅", duration: "按接驳班次", transport: "景区接驳车", reminder: "不要错过返程接驳，保留游船排队时间。", nav: "乌镇西栅景区" },
-          { start: null, timeLabel: "16:00后", title: "西栅内河专人驾驶游船", place: "西栅内河主河道", duration: "约1—1.5小时", transport: "景区电动游船", reminder: "核对码头、6人同船方案和下船点；不乘手摇船。", nav: "乌镇西栅安渡坊码头", ticket: true },
+          { start: null, timeLabel: "15:00前", title: "结束东栅并返回西栅", place: "东栅 → 西栅", duration: "按接驳班次", transport: "景区接驳车", reminder: "东栅预约表参考开放7:00—18:00、17:00停止入园；本行程需提前离开赶游船。", nav: "乌镇西栅景区" },
+          { start: "15:00", end: "17:00", title: "西栅内河专人驾驶游船", place: "西栅内河主河道", duration: "约2小时", transport: "景区电动游船", reminder: "预约表建议15:00—17:00，参考白天游船运营至17:30；现场购票并核对6人同船。", nav: "乌镇西栅安渡坊码头", ticket: true },
           { start: null, timeLabel: "夜间", title: "西栅小巷、晚餐与夜游", place: "西栅街区", duration: "自由安排", transport: "步行", reminder: "桥里桥、白莲塔、水上集市、灵水居按体力选看。", nav: "乌镇西栅景区" }
         ],
         attractions: [
-          { name: "乌镇东栅", summary: "原生态老街、名人故居、传统商铺与民俗表演集中体验。", arrive: "上午", stay: "至16:00前", route: "茅盾故居 → 百床馆 → 财神湾 → 林家铺子 → 宏源泰染坊", leave: "16:00前", must: ["茅盾故居", "百床馆与传统商铺", "皮影戏或花鼓戏"], tips: ["表演场次以现场公告为准", "正午选择室内展馆", "街区简餐地点待现场确认"], task: "学生任务：找一种传统生活器物，判断它过去的用途。", links: [navLink("乌镇东栅景区"), officialLink(OFFICIAL.wuzhen), redLink("乌镇东栅游玩路线")] },
-          { name: "西栅内河游船", summary: "傍晚沿主河道看桥里桥、白莲塔、水上集市与灵水居。", arrive: "16:00后", stay: "约1—1.5小时", route: "具体码头 → 主河道 → 下船点", leave: "晚餐前后", must: ["桥里桥", "白莲塔", "水上集市与灵水居"], tips: ["只选景区专人驾驶电动船", "码头与票种待确认", "先询问6人是否可同船"], task: "学生任务：从船上拍一张桥、河道与民居同框的照片。", links: [navLink("乌镇西栅安渡坊码头"), officialLink(OFFICIAL.wuzhen), redLink("乌镇西栅游船攻略")] }
+          { name: "乌镇东栅", summary: "原生态老街、名人故居、传统商铺与民俗表演集中体验。", arrive: "08:30", stay: "至15:00前", route: "茅盾故居 → 百床馆 → 财神湾 → 林家铺子 → 宏源泰染坊", leave: "15:00前", must: ["茅盾故居", "百床馆与传统商铺", "皮影戏或花鼓戏"], tips: ["预约表参考开放7:00—18:00、17:00停止入园", "表演场次以现场公告为准", "正午选择室内展馆"], task: "学生任务：找一种传统生活器物，判断它过去的用途。", links: [navLink("乌镇东栅景区"), officialLink(OFFICIAL.wuzhen), redLink("乌镇东栅游玩路线")] },
+          { name: "西栅内河游船", summary: "15:00后沿主河道看桥里桥、白莲塔、水上集市与灵水居。", arrive: "15:00", stay: "至17:00左右", route: "具体码头 → 主河道 → 下船点", leave: "17:00左右", must: ["桥里桥", "白莲塔", "水上集市与灵水居"], tips: ["只选景区专人驾驶电动船", "当天现场购票", "先询问6人是否可同船"], task: "学生任务：从船上拍一张桥、河道与民居同框的照片。", links: [navLink("乌镇西栅安渡坊码头"), officialLink(OFFICIAL.wuzhen), redLink("乌镇西栅游船攻略")] }
         ],
         tickets: [
-          { name: "乌镇东栅门票", channel: "乌镇旅游官方渠道", release: "出发前核对住客联票权益", status: "待购票／待核对", official: OFFICIAL.wuzhen, ticketImage: "" },
-          { name: "西栅内河电动游船", channel: "景区官方／现场码头", release: "提前确认6人同船方案", status: "待购票", official: OFFICIAL.wuzhen, ticketImage: "" }
+          { name: "乌镇东栅门票", channel: "乌镇旅游官方小程序", release: "出发前3天购票；预约表建议08:30入园", status: "待购票／待核对", official: OFFICIAL.wuzhen, ticketImage: "" },
+          { name: "西栅内河电动游船", channel: "西栅游船码头", release: "游玩当天现场购票；预约表建议15:00—17:00", status: "待现场购票", official: OFFICIAL.wuzhen, ticketImage: "" }
         ],
         transport: "景区接驳车＋步行＋专人驾驶电动游船",
         tomorrowPreparation: "防晒、驱蚊用品、相机；确认乌村接驳和木心美术馆开放安排。"
@@ -387,22 +399,22 @@
       {
         date: "2026-08-04", day: 3, city: "乌镇", theme: "乌村稻香田园・木心美术馆",
         hotel: "乌镇锦堂行馆", hotelAddress: "西栅景区内；次日退房与跨城用车需提前确认", hotelNav: "乌镇锦堂行馆", lost: "乌镇锦堂行馆大堂；乌村游览时改为乌村游客中心",
-        meetingTime: "上午出发时间待确认", meetingPlace: "乌镇锦堂行馆大堂",
+        meetingTime: "09:00建议抵达乌村", meetingPlace: "乌镇锦堂行馆大堂",
         reminder: "上午田园段避开正午暴晒，下午转入木心美术馆室内避暑。",
         timeline: [
-          { start: null, timeLabel: "上午", title: "接驳前往乌村", place: "西栅 → 乌村（乌镇稻香村落）", duration: "按接驳班次", transport: "景区接驳车", reminder: "上车点、班次和入园方式待确认。", nav: "乌村" },
+          { start: "09:00", title: "抵达乌村并开始田园游览", place: "西栅 → 乌村（乌镇稻香村落）", duration: "接驳时间另计", transport: "景区接驳车", reminder: "预约表建议09:00入园；上车点、班次和入园方式待确认。", nav: "乌村", ticket: true },
           { start: null, timeLabel: "上午", title: "乌村稻田与乡村院落", place: "稻田步道、乡村院落、知青文创区、田园湿地", duration: "约2—3小时", transport: "步行", reminder: "高温时缩短稻田步道，在院落和阴凉处休息。", nav: "乌村" },
           { start: null, timeLabel: "中午", title: "乌村农家特色午餐", place: "乌村内，具体餐厅待确认", duration: "约1—1.5小时", transport: "步行", reminder: "6人桌位与营业时间待确认。", guide: "乌村 农家菜" },
-          { start: null, timeLabel: "下午", title: "木心美术馆室内参观", place: "木心美术馆", duration: "约2小时", transport: "接驳／步行", reminder: "开放日、预约和拍摄规则出发前查官方。", nav: "木心美术馆", ticket: true },
+          { start: "14:00", title: "木心美术馆室内参观", place: "木心美术馆", duration: "约2小时", transport: "接驳／步行", reminder: "预约表建议14:00入馆、参考开放9:00—17:30且周一闭馆；当天规则查官方。", nav: "木心美术馆", ticket: true },
           { start: null, timeLabel: "傍晚", title: "整理行李并休整", place: "乌镇锦堂行馆", duration: "自由安排", transport: "接驳／步行", reminder: "准备次日退房、跨城用车和杭州民宿入住资料。", nav: "乌镇锦堂行馆" }
         ],
         attractions: [
-          { name: "乌村", summary: "围绕稻田、乡村院落、知青文创区与湿地的轻松田园段。", arrive: "上午", stay: "约3—4小时含午餐", route: "稻田步道 → 乡村院落 → 知青文创区 → 田园湿地", leave: "午餐后", must: ["稻田步道", "乡村院落", "知青文创区与湿地"], tips: ["高温时不走完整长线", "田间注意防晒防虫", "餐饮和入园权益待确认"], task: "学生任务：观察稻田与村落如何分布，画一个简易路线图。", links: [navLink("乌村"), officialLink(OFFICIAL.wuzhen), redLink("乌村 乌镇游玩攻略")] },
-          { name: "木心美术馆", summary: "全室内文艺地标，参观艺术展厅与文献展区。", arrive: "下午", stay: "约2小时", route: "常设展 → 文献展区 → 当期展览", leave: "傍晚前", must: ["艺术展厅", "文献展区", "临水建筑空间"], tips: ["开放日与预约要求待官方确认", "留意拍摄规定", "馆内保持安静"], task: "学生任务：选一件作品，用一句话写下最直观的感受。", links: [navLink("木心美术馆"), officialLink(OFFICIAL.muxin), redLink("木心美术馆参观攻略")] }
+          { name: "乌村", summary: "围绕稻田、乡村院落、知青文创区与湿地的轻松田园段。", arrive: "09:00", stay: "约3—4小时含午餐", route: "稻田步道 → 乡村院落 → 知青文创区 → 田园湿地", leave: "午餐后", must: ["稻田步道", "乡村院落", "知青文创区与湿地"], tips: ["预约表参考开放8:00—21:00", "高温时不走完整长线", "田间注意防晒防虫"], task: "学生任务：观察稻田与村落如何分布，画一个简易路线图。", links: [navLink("乌村"), officialLink(OFFICIAL.wuzhen), redLink("乌村 乌镇游玩攻略")] },
+          { name: "木心美术馆", summary: "全室内文艺地标，参观艺术展厅与文献展区。", arrive: "14:00", stay: "约2小时", route: "常设展 → 文献展区 → 当期展览", leave: "17:00前后", must: ["艺术展厅", "文献展区", "临水建筑空间"], tips: ["预约表注明周一闭馆", "开放与预约要求仍需官方确认", "留意拍摄规定"], task: "学生任务：选一件作品，用一句话写下最直观的感受。", links: [navLink("木心美术馆"), officialLink(OFFICIAL.muxin), redLink("木心美术馆参观攻略")] }
         ],
         tickets: [
-          { name: "乌村入园／活动权益", channel: "乌镇旅游官方渠道", release: "出发前确认", status: "请再次确认", official: OFFICIAL.wuzhen, ticketImage: "" },
-          { name: "木心美术馆", channel: "木心美术馆官方渠道", release: "开放与预约规则待确认", status: "待购票／待预约", official: OFFICIAL.muxin, ticketImage: "" }
+          { name: "乌村入园／活动权益", channel: "乌镇小程序／携程", release: "出发前2天预约；预约表建议09:00入园", status: "待预约", official: OFFICIAL.wuzhen, ticketImage: "" },
+          { name: "木心美术馆", channel: "景区现场／木心美术馆官方渠道", release: "预约表写现场补票／随西栅套票；建议14:00入馆", status: "待核对票种与开放日", official: OFFICIAL.muxin, ticketImage: "" }
         ],
         transport: "景区接驳车＋步行",
         tomorrowPreparation: "整理全部行李；确认7座网约车、羡青山民宿准确门店与入住入口。"
@@ -415,17 +427,18 @@
         timeline: [
           { start: null, timeLabel: "上午", title: "退房并前往杭州", place: "乌镇锦堂行馆 → 羡青山民宿", duration: "车程按实时路况", transport: "7座网约车，6人一车", reminder: "核对行李、退房账单、民宿门店和司机目的地。", nav: "羡青山民宿 杭州", ticket: true },
           { start: null, timeLabel: "抵达后", title: "羡青山民宿入住／寄存行李", place: "羡青山民宿", duration: "约30—60分钟", transport: "步行", reminder: "准确地址、入住方式和房型以订单为准。", nav: "羡青山民宿 杭州", ticket: true },
-          { start: null, timeLabel: "午后", title: "浙江大学玉泉校区", place: "浙江大学（玉泉校区）", duration: "约1.5—2小时", transport: "网约车＋步行", reminder: "访客入校方式与开放安排出发前确认。", nav: "浙江大学玉泉校区", ticket: true },
+          { start: "13:30", end: "15:00", title: "浙江大学玉泉校区", place: "浙江大学（玉泉校区）", duration: "约1.5小时", transport: "网约车＋步行", reminder: "预约表写无需预约、免费开放；访客入校政策仍需出发前核验。", nav: "浙江大学玉泉校区", ticket: true },
           { start: null, timeLabel: "傍晚", title: "湖滨商圈与杭帮菜晚餐", place: "杭州湖滨商圈", duration: "约2—3小时", transport: "网约车＋步行", reminder: "6人晚餐餐厅与订位待确认。", nav: "湖滨银泰in77", guide: "杭州湖滨 杭帮菜" },
-          { start: null, timeLabel: "夜间", title: "武林夜市", place: "武林夜市", duration: "约1—1.5小时", transport: "网约车＋步行", reminder: "逛小吃街与手作市集，结束后全员返回民宿。", nav: "武林夜市" }
+          { start: "17:30", end: "20:30", title: "武林夜市", place: "武林夜市", duration: "约3小时含晚餐", transport: "网约车＋步行", reminder: "预约表写无需预约、17:00后出摊；逛完全员返回民宿。", nav: "武林夜市" }
         ],
         attractions: [
-          { name: "浙江大学玉泉校区", summary: "老牌名校校园风光与休闲散步段。", arrive: "午后", stay: "约1.5—2小时", route: "校门 → 主体校园道路 → 代表性建筑", leave: "傍晚前", must: ["校园林荫道", "代表性教学建筑", "校园历史氛围"], tips: ["入校政策可能变化", "以学校官方访客规则为准", "高温时缩短户外路线"], task: "学生任务：找一座校园建筑，观察它的年代感来自哪些细节。", links: [navLink("浙江大学玉泉校区"), redLink("浙江大学玉泉校区参观")] },
-          { name: "武林夜市", summary: "夜间小吃、手作市集与城市烟火气体验。", arrive: "夜间", stay: "约1—1.5小时", route: "夜市入口 → 小吃区 → 手作市集", leave: "体力合适时", must: ["本地小吃", "手作市集", "夜间街巷氛围"], tips: ["保管好手机和随身物品", "分食少量尝鲜", "拥挤时保持6人同行"], task: "学生任务：选一种最有杭州特色的小吃，记录名称和味道。", links: [navLink("武林夜市"), redLink("武林夜市美食攻略")] }
+          { name: "浙江大学玉泉校区", summary: "老牌名校校园风光与休闲散步段。", arrive: "13:30", stay: "至15:00", route: "校门 → 主体校园道路 → 代表性建筑", leave: "15:00", must: ["校园林荫道", "代表性教学建筑", "校园历史氛围"], tips: ["预约表参考开放6:30—21:00且无需预约", "入校政策可能变化", "以学校官方访客规则为准"], task: "学生任务：找一座校园建筑，观察它的年代感来自哪些细节。", links: [navLink("浙江大学玉泉校区"), redLink("浙江大学玉泉校区参观")] },
+          { name: "武林夜市", summary: "夜间小吃、手作市集与城市烟火气体验。", arrive: "17:30", stay: "至20:30", route: "夜市入口 → 小吃区 → 手作市集", leave: "20:30左右", must: ["本地小吃", "手作市集", "夜间街巷氛围"], tips: ["预约表参考17:00—23:00", "保管好手机和随身物品", "拥挤时保持6人同行"], task: "学生任务：选一种最有杭州特色的小吃，记录名称和味道。", links: [navLink("武林夜市"), redLink("武林夜市美食攻略")] }
         ],
         tickets: [
           { name: "羡青山民宿订单", channel: "实际预订平台／房东", release: "入住前确认准确门店与入住方式", status: "待添加凭证", ticketImage: "" },
-          { name: "浙江大学玉泉校区访客入校", channel: "学校官方访客渠道", release: "出发前核验", status: "请再次确认", ticketImage: "" }
+          { name: "浙江大学玉泉校区访客入校", channel: "学校官方访客渠道", release: "预约表写无需预约；出发前核验访客政策", status: "无需预约／待复核", ticketImage: "" },
+          { name: "武林夜市", channel: "免费街区", release: "无需预约；预约表建议17:30—20:30", status: "无需预约", ticketImage: "" }
         ],
         transport: "乌镇→杭州7座网约车；市内网约车＋步行",
         tomorrowPreparation: "防晒、饮用水、舒适鞋；确认西湖游船码头、票种和雷峰塔安排。"
@@ -438,20 +451,20 @@
         timeline: [
           { start: null, timeLabel: "上午", title: "断桥、白堤与平湖秋月", place: "断桥残雪 → 白堤 → 平湖秋月", duration: "约2小时", transport: "网约车＋步行", reminder: "尽早出发避开高温和人流。", nav: "断桥残雪" },
           { start: null, timeLabel: "上午后段", title: "孤山与西泠印社", place: "孤山景区、西泠印社", duration: "约1.5小时", transport: "步行", reminder: "体力不足可缩短孤山支线。", nav: "西泠印社" },
-          { start: null, timeLabel: "中午", title: "岳王庙码头乘官方画舫", place: "岳王庙码头 → 三潭印月", duration: "约1—1.5小时", transport: "官方专人驾驶电动画舫", reminder: "核对登岛票种、码头和花港观鱼下船路线。", nav: "岳王庙码头", ticket: true },
+          { start: "11:00", title: "岳王庙码头乘官方画舫", place: "岳王庙码头 → 三潭印月", duration: "约1—1.5小时", transport: "官方专人驾驶电动画舫", reminder: "提前1天预约；核对登岛票种和花港观鱼下船路线。", nav: "岳王庙码头", ticket: true },
           { start: null, timeLabel: "午后", title: "花港下船、午餐与短休", place: "花港观鱼码头周边", duration: "约1.5—2小时", transport: "步行", reminder: "午餐地点待确认，优先室内休息。", nav: "花港观鱼码头", guide: "花港观鱼 午餐" },
           { start: null, timeLabel: "下午", title: "花港观鱼与苏堤春晓", place: "花港观鱼 → 苏堤", duration: "约2小时", transport: "步行／观光车", reminder: "高温时乘观光车代步，不完整徒步苏堤。", nav: "花港观鱼" },
-          { start: null, timeLabel: "傍晚", title: "雷峰塔与雷峰夕照", place: "雷峰塔景区", duration: "约1.5小时", transport: "观光车／网约车＋步行", reminder: "开放时间、购票与登塔排队出发前确认。", nav: "雷峰塔景区", ticket: true },
+          { start: "16:30", title: "雷峰塔与雷峰夕照", place: "雷峰塔景区", duration: "约1.5小时", transport: "观光车／网约车＋步行", reminder: "提前1天购票；预约表建议16:30入园，开放时间仍需官方确认。", nav: "雷峰塔景区", ticket: true },
           { start: null, timeLabel: "夜间", title: "南山路与湖滨夜景", place: "南山路、湖滨", duration: "按体力安排", transport: "步行／网约车", reminder: "体力不足直接返回羡青山民宿。", nav: "南山路 杭州" }
         ],
         attractions: [
           { name: "西湖北线与孤山", summary: "断桥、白堤、平湖秋月、孤山与西泠印社连续步行。", arrive: "上午", stay: "约3—4小时", route: "断桥 → 白堤 → 平湖秋月 → 孤山 → 西泠印社", leave: "前往岳王庙码头", must: ["断桥与白堤", "平湖秋月", "孤山与西泠印社"], tips: ["清晨出发更凉快", "带足饮水", "体力不足跳过孤山深处"], task: "学生任务：从桥、堤、岛中选一个，说明它如何改变游览路线。", links: [navLink("断桥残雪"), redLink("西湖北线徒步路线")] },
-          { name: "三潭印月与花港观鱼", summary: "从岳王庙码头乘官方电动画舫登湖心岛，再到花港下船。", arrive: "中午", stay: "约2—3小时含午餐", route: "岳王庙码头 → 三潭印月 → 花港观鱼码头", leave: "午后", must: ["西湖水上视角", "三潭印月", "花港观鱼"], tips: ["确认票种是否含登岛", "上下船码头不要混淆", "晕船者坐船舱中部"], task: "学生任务：拍一张含近处船体与远处湖岸的层次照片。", links: [navLink("岳王庙码头"), officialLink(OFFICIAL.westlakeBoat), redLink("西湖三潭印月游船路线")] },
-          { name: "雷峰塔", summary: "傍晚登塔俯瞰西湖，等待雷峰夕照。", arrive: "傍晚", stay: "约1—1.5小时", route: "入口 → 遗址展示 → 登塔观景", leave: "日落后", must: ["塔基遗址", "西湖全景", "雷峰夕照"], tips: ["票价与开放时间待确认", "电梯排队预留时间", "雷雨天气不在高处久留"], task: "学生任务：从高处找出一条湖岸线，描述它的形状。", links: [navLink("雷峰塔景区"), redLink("雷峰塔游览攻略")] }
+          { name: "三潭印月与花港观鱼", summary: "11:00从岳王庙码头乘官方电动画舫登湖心岛，再到花港下船。", arrive: "11:00", stay: "约2—3小时含午餐", route: "岳王庙码头 → 三潭印月 → 花港观鱼码头", leave: "午后", must: ["西湖水上视角", "三潭印月", "花港观鱼"], tips: ["提前1天在西湖游船小程序预约", "确认票种是否含登岛", "上下船码头不要混淆"], task: "学生任务：拍一张含近处船体与远处湖岸的层次照片。", links: [navLink("岳王庙码头"), officialLink(OFFICIAL.westlakeBoat), redLink("西湖三潭印月游船路线")] },
+          { name: "雷峰塔", summary: "16:30入园登塔俯瞰西湖，等待雷峰夕照。", arrive: "16:30", stay: "约1—1.5小时", route: "入口 → 遗址展示 → 登塔观景", leave: "日落后", must: ["塔基遗址", "西湖全景", "雷峰夕照"], tips: ["提前1天购票", "预约表参考开放8:00—20:00", "电梯排队预留时间"], task: "学生任务：从高处找出一条湖岸线，描述它的形状。", links: [navLink("雷峰塔景区"), redLink("雷峰塔游览攻略")] }
         ],
         tickets: [
-          { name: "西湖官方电动画舫／三潭印月", channel: "西湖游船官方渠道", release: "出发前确认岳王庙码头票种", status: "待购票", official: OFFICIAL.westlakeBoat, ticketImage: "" },
-          { name: "雷峰塔", channel: "景区官方／正规售票平台", release: "出发前核验开放时间", status: "待购票", ticketImage: "" },
+          { name: "西湖官方电动画舫／三潭印月", channel: "西湖游船小程序", release: "提前1天预约；11:00岳王庙码头，预约表参考开放8:00—17:00", status: "待预约", official: OFFICIAL.westlakeBoat, ticketImage: "" },
+          { name: "雷峰塔", channel: "美团／携程／景区官方渠道", release: "提前1天购票；预约表建议16:30入园", status: "待购票", ticketImage: "" },
           { name: "西湖观光车", channel: "现场", release: "按体力与运营情况购买", status: "现场决定", ticketImage: "" }
         ],
         transport: "市内网约车＋步行＋官方电动画舫＋观光车",
@@ -460,23 +473,23 @@
       {
         date: "2026-08-07", day: 6, city: "杭州", theme: "北高峰索道・灵隐下坡省力线",
         hotel: "羡青山民宿", hotelAddress: "杭州西湖片区；准确门店与地址以实际订单为准", hotelNav: "羡青山民宿 杭州", lost: "羡青山民宿约定集合点；景区内改为灵隐飞来峰主入口",
-        meetingTime: "清晨出发时间待确认", meetingPlace: "羡青山民宿约定集合点",
-        reminder: "索道上山后按灵顺寺→韬光寺→永福寺→飞来峰→灵隐寺一路下行，减少折返。",
+        meetingTime: "按08:00北高峰索道倒推", meetingPlace: "羡青山民宿约定集合点",
+        reminder: "预约表同时写飞来峰07:45上午场和索道08:00上山，两者与下坡路线冲突；先锁上午场，具体入园窗口必须确认。",
         timeline: [
           { start: null, timeLabel: "清晨", title: "前往北高峰索道站", place: "羡青山民宿 → 北高峰索道站", duration: "按实时路况", transport: "网约车", reminder: "索道运营、天气和排队情况出发前确认。", nav: "北高峰索道", ticket: true },
-          { start: null, timeLabel: "上午", title: "索道上山与灵顺寺", place: "北高峰、灵顺寺", duration: "约1—1.5小时", transport: "索道＋步行", reminder: "山顶俯瞰杭州；大风雷雨时按运营通知调整。", nav: "灵顺寺" },
+          { start: "08:00", title: "北高峰索道上山与灵顺寺", place: "北高峰、灵顺寺", duration: "约1—1.5小时", transport: "索道＋步行", reminder: "预约表建议08:00索道上山、当天现场购票；大风雷雨时按运营通知调整。", nav: "灵顺寺", ticket: true },
           { start: null, timeLabel: "上午后段", title: "韬光寺与永福寺下坡线", place: "韬光寺 → 永福寺", duration: "约2小时", transport: "下坡步行", reminder: "山路穿防滑鞋，体力不足跳过支线。", nav: "韬光寺" },
-          { start: null, timeLabel: "中午前后", title: "飞来峰造像与灵隐寺", place: "飞来峰 → 灵隐寺", duration: "约2—3小时", transport: "步行", reminder: "实名预约、入园证件和寺院开放范围待确认。", nav: "灵隐飞来峰景区", ticket: true },
+          { start: null, timeLabel: "下坡抵达后", title: "飞来峰造像与灵隐寺", place: "飞来峰 → 灵隐寺", duration: "约2—3小时", transport: "步行", reminder: "需提前7天08:00抢上午场；确认07:45预约窗口是否允许按下坡路线稍后入园。", nav: "灵隐飞来峰景区", ticket: true },
           { start: null, timeLabel: "中午", title: "灵隐特色素斋", place: "灵隐景区周边，具体餐厅待确认", duration: "约1小时", transport: "步行", reminder: "6人用餐地点与营业时间待确认。", guide: "灵隐寺 素斋" },
           { start: null, timeLabel: "下午", title: "休整并返回民宿", place: "灵隐景区 → 羡青山民宿", duration: "按路况", transport: "网约车", reminder: "下午不再加户外景点，补水休息。", nav: "羡青山民宿 杭州" }
         ],
         attractions: [
-          { name: "北高峰下坡线", summary: "索道上山后一路下行，串联灵顺、韬光、永福与灵隐核心区。", arrive: "清晨", stay: "约半天", route: "北高峰索道 → 灵顺寺 → 韬光寺 → 永福寺 → 飞来峰", leave: "进入灵隐寺前后", must: ["北高峰视野", "韬光寺", "永福寺黄墙竹林"], tips: ["索道受天气影响", "全程仍有山路台阶", "穿防滑鞋并轻装"], task: "学生任务：观察山寺如何利用地势安排入口与院落。", links: [navLink("北高峰索道"), redLink("北高峰灵隐下坡路线")] },
+          { name: "北高峰下坡线", summary: "08:00索道上山后一路下行，串联灵顺、韬光、永福与灵隐核心区。", arrive: "08:00", stay: "约半天", route: "北高峰索道 → 灵顺寺 → 韬光寺 → 永福寺 → 飞来峰", leave: "进入灵隐寺前后", must: ["北高峰视野", "韬光寺", "永福寺黄墙竹林"], tips: ["索道当天现场购票", "预约表参考运营8:00—17:30", "受天气影响且全程仍有台阶"], task: "学生任务：观察山寺如何利用地势安排入口与院落。", links: [navLink("北高峰索道"), redLink("北高峰灵隐下坡路线")] },
           { name: "飞来峰与灵隐寺", summary: "参观千年石刻造像群及灵隐寺主要殿宇。", arrive: "中午前后", stay: "约2—3小时", route: "飞来峰 → 天王殿 → 大雄宝殿 → 华严殿", leave: "午餐后", must: ["飞来峰石刻造像", "天王殿与大雄宝殿", "华严殿"], tips: ["预约与票务规则出发前官方核验", "寺院内保持安静", "正午优先阴凉和室内"], task: "学生任务：选一处造像或殿宇细节，观察它与山林的关系。", links: [navLink("灵隐飞来峰景区"), officialLink(OFFICIAL.lingyin), redLink("灵隐寺省力路线")] }
         ],
         tickets: [
-          { name: "北高峰索道", channel: "索道官方／现场", release: "出发前确认运营与购票方式", status: "请再次确认", ticketImage: "" },
-          { name: "灵隐飞来峰／灵隐寺", channel: "官方预约与购票渠道", release: "出发前核验实名规则", status: "待预约／待购票", official: OFFICIAL.lingyin, ticketImage: "" }
+          { name: "北高峰索道", channel: "索道售票处／现场", release: "游玩当天现场购票；预约表建议08:00上山", status: "待现场购票", ticketImage: "" },
+          { name: "灵隐飞来峰／灵隐寺", channel: "“杭州灵隐飞来峰”官方小程序", release: "出行前7天08:00抢上午场；预约表建议07:45入园", status: "待抢票／时间冲突待确认", official: OFFICIAL.lingyin, ticketImage: "" }
         ],
         transport: "市内网约车＋索道＋下坡步行",
         tomorrowPreparation: "宋城门票、演出场次与座位凭证；防晒用品和便携饮水。"
@@ -485,20 +498,20 @@
         date: "2026-08-08", day: 7, city: "杭州", theme: "宋城・千古情全天",
         hotel: "羡青山民宿", hotelAddress: "杭州西湖片区；准确门店与地址以实际订单为准", hotelNav: "羡青山民宿 杭州", lost: "羡青山民宿约定集合点；园区内改为《宋城千古情》剧院入口",
         meetingTime: "需保证10:00入园", meetingPlace: "羡青山民宿约定集合点",
-        reminder: "《宋城千古情》场次和座位以票面为准；正午优先室内场馆避暑。",
+        reminder: "提前1—2天购票，优先选择19:30晚间主场；最终场次、座位和检票口以票面为准。",
         timeline: [
           { start: "10:00", title: "进入宋城景区", place: "杭州宋城", duration: "全天", transport: "网约车＋步行", reminder: "先确认核心演出剧院、场次、座位与检票时间。", nav: "杭州宋城", ticket: true },
           { start: null, timeLabel: "上午", title: "宋代古风街区与实景演出", place: "宋城古风街区", duration: "约2小时", transport: "步行", reminder: "关注抛绣球、市井快闪、武侠情景剧等当天节目表。", nav: "杭州宋城" },
           { start: null, timeLabel: "正午", title: "室内场馆与景区简餐", place: "宋城景区内", duration: "约2小时", transport: "步行", reminder: "餐厅未指定；汉服租赁为自选，不影响核心演出入场。", guide: "杭州宋城 景区餐饮" },
           { start: null, timeLabel: "下午", title: "主题场馆与互动街区", place: "宋城景区内", duration: "按节目表安排", transport: "步行", reminder: "提前留出核心演出检票时间。" },
-          { start: null, timeLabel: "票面场次", title: "观看《宋城千古情》", place: "宋城千古情剧院", duration: "以票面为准", transport: "步行", reminder: "场次未在终极版中写明，必须以实际票面为准。", nav: "杭州宋城", ticket: true },
+          { start: "19:30", title: "优先观看《宋城千古情》晚间主场", place: "宋城千古情剧院", duration: "以票面为准", transport: "步行", reminder: "预约表优先19:30场；若实际场次不同，以已购票面为准并整体调整园内顺序。", nav: "杭州宋城", ticket: true },
           { start: null, timeLabel: "演出后", title: "宋城夜景并返回民宿", place: "杭州宋城 → 羡青山民宿", duration: "按体力与路况", transport: "网约车", reminder: "全员集合后返程，回民宿整理次日行李。", nav: "羡青山民宿 杭州" }
         ],
         attractions: [
-          { name: "杭州宋城", summary: "全天体验宋代古风街区、实景节目与《宋城千古情》。", arrive: "10:00", stay: "核心演出及夜景结束", route: "入园 → 古风街区 → 室内场馆 → 互动街区 → 千古情", leave: "演出后", must: ["《宋城千古情》", "古风街区", "当天实景节目"], tips: ["演出场次与座位以票面为准", "至少提前到剧院候场", "正午优先室内", "汉服体验不要影响检票"], task: "学生任务：找一个宋代生活元素，说明它在当时的用途。", links: [navLink("杭州宋城"), officialLink(OFFICIAL.songcheng), redLink("宋城千古情座位攻略")] }
+          { name: "杭州宋城", summary: "10:00入园，全天体验古风街区、实景节目与优先19:30场《宋城千古情》。", arrive: "10:00", stay: "核心演出及夜景结束", route: "入园 → 古风街区 → 室内场馆 → 互动街区 → 千古情", leave: "演出后", must: ["《宋城千古情》", "古风街区", "当天实景节目"], tips: ["提前1—2天购票", "预约表优先19:30场", "最终场次与座位以票面为准", "正午优先室内"], task: "学生任务：找一个宋代生活元素，说明它在当时的用途。", links: [navLink("杭州宋城"), officialLink(OFFICIAL.songcheng), redLink("宋城千古情座位攻略")] }
         ],
         tickets: [
-          { name: "宋城＋《宋城千古情》套票", channel: "宋城官方渠道／正规售票平台", release: "尽早锁定6人同场次座位", status: "待购票／待添加凭证", official: OFFICIAL.songcheng, ticketImage: "" }
+          { name: "宋城＋《宋城千古情》套票", channel: "宋城官方公众号", release: "提前1—2天购票；优先19:30晚间主场", status: "待购票／待添加凭证", official: OFFICIAL.songcheng, ticketImage: "" }
         ],
         transport: "市内网约车＋园区步行",
         tomorrowPreparation: "整理全部行李和返程证件；确认退房时间、杭州西站车次与提前到站要求。"
@@ -534,7 +547,9 @@
       "浙江大学玉泉校区访客入校方式可能调整，出发前通过学校官方渠道核验。",
       "西湖画舫需确认岳王庙码头上船、三潭印月登岛和花港观鱼下船的票种与路线。",
       "灵隐下坡线仍有山路台阶；北高峰索道运营、实名预约、飞来峰与寺院票务以出发前官方规则为准。",
-      "《宋城千古情》终极版未写具体场次；演出时间、座位和检票口必须以实际票面为准。",
+      "预约表同时安排07:45飞来峰与08:00北高峰索道，无法按既定下坡路线同时执行；抢上午场后必须确认入园时间窗口。",
+      "预约表写宋城优先19:30晚间主场；演出时间、座位和检票口仍必须以实际票面为准。",
+      "预约表总说明写“游船当天现场即可”，但明细要求西湖画舫提前1天；网页按更具体的明细执行，西栅游船当天买、西湖画舫提前1天约。",
       "Day8 返程车次未写入文档；必须按车票倒推退房、采购、叫车和到达杭州西站时间。",
       "全部酒店、门票、游船、餐厅和返程安排，只有看到实际订单或凭证才视为完成。"
     ];
